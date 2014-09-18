@@ -1,0 +1,4 @@
+.DS_Store
+/src/.bundle
+/src/Gemfile.lock
+/src/vendor
