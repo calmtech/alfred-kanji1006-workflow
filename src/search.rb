@@ -3,8 +3,7 @@
 require 'rexml/document'
 require 'sqlite3'
 
-#QUERY = ARGV[0].to_s.strip
-QUERY = '右'
+QUERY = ARGV[0].to_s.strip
 
 doc = REXML::Document.new('<?xml version="1.0"?>')
 
