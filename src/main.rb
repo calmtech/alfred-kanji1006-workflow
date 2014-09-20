@@ -1,5 +1,6 @@
 # encoding: utf-8
 
+require 'rubygems' unless defined? Gem
 require 'rexml/document'
 require 'sqlite3'
 
