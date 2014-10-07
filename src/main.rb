@@ -4,7 +4,8 @@ require 'rubygems' unless defined? Gem
 require 'rexml/document'
 require 'sqlite3'
 
-QUERY = ARGV[0].to_s.strip
+
+QUERY = ARGV[0].encode('UTF-8-MAC', 'UTF-8').strip
 
 doc = REXML::Document.new('<?xml version="1.0"?>')
 
