@@ -3,9 +3,12 @@
 require 'rubygems' unless defined? Gem
 require 'rexml/document'
 require 'sqlite3'
+require 'nkf'
 
 
-QUERY = ARGV[0].encode('UTF-8-MAC', 'UTF-8').strip
+query = ARGV[0].encode('UTF-8', 'UTF-8-MAC').strip
+query_katakana = NKF.nkf("--katakana -Xw", query)
+query_hiragana = NKF.nkf("--hiragana -Xw", query)
 
 doc = REXML::Document.new('<?xml version="1.0"?>')
 
@@ -15,7 +18,7 @@ begin
 
 	root = doc.add_element('items')
 
-	db.execute "select * from kanji1006 where title like '%#{QUERY}%' order by id asc" do |row|
+	db.execute "select * from kanji1006 where title like '%#{query}%' or title like '%#{query_katakana}%' or title like '%#{query_hiragana}%' order by id asc" do |row|
 		item = root.add_element('item')
 		title = item.add_element('title')
 		title.text = row[1]
